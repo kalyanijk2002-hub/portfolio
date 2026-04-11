@@ -1,26 +1,109 @@
+/* ============================================================
+   globals.css
+   Tailwind v4 configuration via CSS — no tailwind.config.js needed.
+   All custom theme tokens (colours, fonts, animations) live here.
+   ============================================================ */
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ----------------------------------------------------------
+   Class-based dark mode (toggled by adding `.dark` to <html>)
+   ---------------------------------------------------------- */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ----------------------------------------------------------
+   Design tokens — extend Tailwind's default theme
+   ---------------------------------------------------------- */
+@theme {
+  /* Brand colours */
+  --color-navy:      #0F172A;
+  --color-navy-800:  #1E293B;
+  --color-navy-700:  #334155;
+  --color-navy-600:  #475569;
+  --color-gold:      #F59E0B;
+  --color-gold-dark: #D97706;
+  --color-gold-light:#FCD34D;
+
+  /* Typography */
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Smooth easing for transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ----------------------------------------------------------
+   Scroll behaviour
+   ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ----------------------------------------------------------
+   Base body styles — light mode default, dark mode override
+   ---------------------------------------------------------- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #0F172A;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth);
+}
+
+.dark body {
+  background-color: #0F172A;
+  color: #f1f5f9;
+}
+
+/* ----------------------------------------------------------
+   Scroll-reveal animation
+   Elements start invisible/shifted down; the .reveal-visible
+   class is added by the IntersectionObserver hook.
+   ---------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s var(--ease-smooth), transform 0.65s var(--ease-smooth);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay helpers (applied via inline style or utility class) */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ----------------------------------------------------------
+   Focus-visible ring — accessibility
+   ---------------------------------------------------------- */
+*:focus-visible {
+  outline: 2px solid #F59E0B;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ----------------------------------------------------------
+   Gradient text helper (used in Hero heading)
+   ---------------------------------------------------------- */
+.text-gradient {
+  background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----------------------------------------------------------
+   Section separator — subtle decorative line
+   ---------------------------------------------------------- */
+.section-rule {
+  width: 60px;
+  height: 3px;
+  background: #F59E0B;
+  border-radius: 9999px;
+  margin-bottom: 2rem;
 }
