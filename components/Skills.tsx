@@ -1,17 +1,25 @@
 "use client";
 
-// Skills — grouped pill badges organised by category.
+/*
+ * Skills — grouped competency badges.
+ *
+ * Group header (spec §9):
+ *   DM Sans 500, text-xs, uppercase, tracking-wider
+ *   padding-left: pl-4 (16px)
+ *   border-left:  border-l-2 border-gold
+ *   margin-bottom: mb-4 (16px)
+ *
+ * Each tag (spec §9):
+ *   h-[30px], px-4, inline-flex, items-center
+ *   DM Mono 400, text-xs, tracking-wide
+ *   white-space: nowrap
+ *
+ * Grid: 2 cols on sm+, gap-6 (32px) between cards.
+ */
 
 import { skills } from "@/data/resume";
 import { useReveal } from "./useReveal";
-
-// One colour per group index for visual variety
-const groupColours = [
-  "border-gold/40 bg-gold/5 text-gold-dark dark:text-gold",
-  "border-teal-500/40 bg-teal-500/5 text-teal-700 dark:text-teal-400",
-  "border-violet-500/40 bg-violet-500/5 text-violet-700 dark:text-violet-400",
-  "border-rose-500/40 bg-rose-500/5 text-rose-700 dark:text-rose-400",
-];
+import Container from "./layout/Container";
 
 export default function Skills() {
   const sectionRef = useReveal() as React.RefObject<HTMLElement>;
@@ -20,37 +28,37 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="reveal bg-slate-50 py-20 dark:bg-navy"
+      className="reveal bg-slate-50 py-16 sm:py-24 lg:py-32 dark:bg-navy"
     >
-      <div className="mx-auto max-w-4xl px-6">
+      <Container>
         {/* Section header */}
-        <div className="mb-10">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">
+        <div className="mb-12">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-gold">
             Expertise
           </p>
-          <h2 className="font-[var(--font-playfair)] text-3xl font-bold text-navy dark:text-white sm:text-4xl">
+          <h2 className="font-display text-2xl font-light leading-snug tracking-tight text-navy dark:text-white lg:text-3xl">
             Skills
           </h2>
-          <div className="section-rule mt-4" />
         </div>
 
-        {/* Skill groups grid */}
+        {/* Skill group grid — 2 cols on sm+, equal height via align-items stretch */}
         <div className="grid gap-6 sm:grid-cols-2">
-          {Object.entries(skills).map(([group, items], groupIndex) => (
+          {Object.entries(skills).map(([group, items]) => (
             <div
               key={group}
-              className="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-navy-800"
+              className="rounded-xl border-t-2 border-gold bg-white p-8 dark:bg-navy-800"
             >
-              <h3 className="mb-4 font-[var(--font-playfair)] text-base font-semibold text-navy dark:text-white">
+              {/* Group header — left gold border, DM Sans 500 */}
+              <h3 className="mb-4 border-l-2 border-gold pl-4 font-sans text-xs font-medium uppercase tracking-wider text-navy-600 dark:text-slate-400">
                 {group}
               </h3>
+
+              {/* Tags — flex-wrap, gap-2 */}
               <div className="flex flex-wrap gap-2">
                 {items.map((skill) => (
                   <span
                     key={skill}
-                    className={`inline-block rounded-full border px-3 py-1 text-xs font-medium transition-transform hover:scale-105 ${
-                      groupColours[groupIndex % groupColours.length]
-                    }`}
+                    className="inline-flex h-[30px] items-center whitespace-nowrap rounded-full border border-gold/25 bg-gold/5 px-4 font-mono text-xs tracking-wide text-gold-dark transition-transform duration-150 hover:scale-105 dark:text-gold"
                   >
                     {skill}
                   </span>
@@ -59,7 +67,7 @@ export default function Skills() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

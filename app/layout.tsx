@@ -1,24 +1,45 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  DM_Sans,
+  DM_Mono,
+} from "next/font/google";
 import "./globals.css";
 
-// Inter — clean, modern sans-serif for body text
-const inter = Inter({
+/*
+ * Cormorant Garamond — high-contrast serif for hero name and section headings.
+ * Used via font-display Tailwind utility / CSS variable.
+ */
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-// Playfair Display — elegant serif for headings
-const playfair = Playfair_Display({
+/*
+ * DM Sans — geometric humanist sans-serif for body, UI, and button text.
+ * Weight 300 for prose, 400 for secondary UI, 500 for emphasis.
+ */
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+  weight: ["300", "400", "500"],
+});
+
+/*
+ * DM Mono — monospaced for labels, dates, skill tags, and metadata.
+ */
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dm-mono",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
-  // Replace with your actual deployed domain before going live
   metadataBase: new URL("https://your-domain.vercel.app"),
   title: "Kalyani Krishnan | MSc Finance & Management",
   description:
@@ -39,7 +60,6 @@ export const metadata: Metadata = {
       "Aspiring investment professional with a background in financial analysis and MIS reporting.",
     type: "website",
     locale: "en_GB",
-    // Replace with your deployed URL and a real OG image before going live
     url: "https://your-domain.vercel.app",
     images: [
       {
@@ -56,7 +76,6 @@ export const metadata: Metadata = {
     description: "Aspiring investment professional — MSc Finance, Strathclyde.",
     images: ["/og-image.png"],
   },
-  // The favicon is at /public/favicon.ico (replace with your own)
   icons: {
     icon: "/favicon.ico",
   },
@@ -68,39 +87,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /*
-     * The `dark` class on <html> is toggled by the ThemeToggle component.
-     * We suppress hydration warnings because the class is set client-side
-     * from localStorage before the first paint via an inline script injected
-     * in ThemeProvider.
-     */
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable}`}
+      className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}
       suppressHydrationWarning
     >
       <head>
         {/*
-         * Inline script to apply the stored theme BEFORE the page renders,
-         * preventing a flash of the wrong colour scheme on load.
+         * Apply stored theme before first paint to prevent colour-scheme flash.
+         * Falls back to system preference if no stored value.
          */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function () {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (saved === 'dark' || (!saved && prefersDark)) {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (_) {}
-              })();
-            `,
+            __html: `(function(){try{var s=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||(!s&&d))document.documentElement.classList.add('dark');}catch(_){}})();`,
           }}
         />
       </head>
-      <body className="min-h-screen font-[var(--font-inter)] antialiased">
+      <body className="min-h-screen font-sans antialiased">
         {children}
       </body>
     </html>

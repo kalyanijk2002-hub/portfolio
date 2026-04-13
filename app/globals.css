@@ -1,69 +1,156 @@
 /* ============================================================
-   globals.css
-   Tailwind v4 configuration via CSS — no tailwind.config.js needed.
-   All custom theme tokens (colours, fonts, animations) live here.
+   globals.css — Kalyani Krishnan Portfolio Design System
+   Tailwind v4 — configuration lives entirely in this file.
    ============================================================ */
 
 @import "tailwindcss";
 
 /* ----------------------------------------------------------
-   Class-based dark mode (toggled by adding `.dark` to <html>)
+   Class-based dark mode
    ---------------------------------------------------------- */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ----------------------------------------------------------
-   Design tokens — extend Tailwind's default theme
+   DESIGN TOKENS — Tailwind @theme
+   Every value in @theme becomes both a CSS custom property
+   AND a Tailwind utility class.
    ---------------------------------------------------------- */
 @theme {
-  /* Brand colours */
-  --color-navy:      #0F172A;
-  --color-navy-800:  #1E293B;
-  --color-navy-700:  #334155;
-  --color-navy-600:  #475569;
-  --color-gold:      #F59E0B;
-  --color-gold-dark: #D97706;
-  --color-gold-light:#FCD34D;
+  /* ── Brand colours ─────────────────────────────────────── */
+  --color-navy:       #0F172A;
+  --color-navy-900:   #0a1120;
+  --color-navy-800:   #1E293B;
+  --color-navy-700:   #334155;
+  --color-navy-600:   #475569;
+  --color-gold:       #C9A84C;
+  --color-gold-dark:  #A8843A;
+  --color-gold-light: #E2C47A;
 
-  /* Typography */
-  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  /* ── Font stacks — wired to Next.js font variable injections ─ */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans:    var(--font-dm-sans),   "DM Sans",            ui-sans-serif, sans-serif;
+  --font-mono:    var(--font-dm-mono),   "DM Mono",            ui-monospace,  monospace;
 
-  /* Smooth easing for transitions */
+  /* ── Type scale — modular (≈1.25 ratio) ────────────────── */
+  /* Override Tailwind defaults so utility classes match spec  */
+  --text-xs:   0.75rem;    /* 12px — labels, captions */
+  --text-sm:   0.875rem;   /* 14px — secondary UI, dates */
+  --text-base: 1rem;       /* 16px — body copy */
+  --text-md:   1.125rem;   /* 18px — lead paragraphs (new) */
+  --text-lg:   1.25rem;    /* 20px — card titles */
+  --text-xl:   1.5rem;     /* 24px — section subheadings */
+  --text-2xl:  2rem;       /* 32px — section headings */
+  --text-3xl:  2.5rem;     /* 40px — page titles */
+  --text-4xl:  3.5rem;     /* 56px — hero subtitle */
+  --text-5xl:  4.5rem;     /* 72px — hero name */
+
+  /* ── Line heights ───────────────────────────────────────── */
+  --leading-tight:   1.1;    /* display/hero only */
+  --leading-snug:    1.25;   /* headings */
+  --leading-normal:  1.5;    /* body copy */
+  --leading-relaxed: 1.65;   /* long-form reading */
+
+  /* ── Letter spacing ─────────────────────────────────────── */
+  --tracking-tight:  -0.03em;  /* large display text */
+  --tracking-normal:  0em;     /* body */
+  --tracking-wide:    0.06em;  /* UI labels, buttons */
+  --tracking-wider:   0.12em;  /* ALL-CAPS section labels */
+
+  /* ── Border radius ──────────────────────────────────────── */
+  --radius-sm:   0.375rem;  /* 6px */
+  --radius-md:   0.75rem;   /* 12px */
+  --radius-lg:   1.25rem;   /* 20px */
+  --radius-full: 9999px;
+
+  /* ── Easing ─────────────────────────────────────────────── */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ----------------------------------------------------------
-   Scroll behaviour
+   CUSTOM UTILITIES (Tailwind v4 @utility directive)
+   ---------------------------------------------------------- */
+
+/* Max-width content container — 1200px */
+@utility max-w-content {
+  max-width: 75rem;
+}
+
+/* Max-width narrow container — 480px */
+@utility max-w-narrow {
+  max-width: 30rem;
+}
+
+/* ----------------------------------------------------------
+   SEMANTIC TOKENS — light mode defaults
+   Used with var() in CSS rules below; not Tailwind utilities.
+   ---------------------------------------------------------- */
+:root {
+  --bg-base:      #ffffff;
+  --bg-surface:   #f8fafc;
+  --bg-muted:     #f1f5f9;
+
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+
+  --accent-gold:    #C9A84C;
+  --accent-gold-dk: #A8843A;
+
+  --border-subtle:  rgba(15, 23, 42, 0.1);
+  --border-strong:  rgba(15, 23, 42, 0.2);
+}
+
+/* Dark mode semantic overrides */
+.dark {
+  --bg-base:      #0F172A;
+  --bg-surface:   #1E293B;
+  --bg-muted:     #334155;
+
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #64748b;
+
+  --border-subtle:  rgba(255, 255, 255, 0.08);
+  --border-strong:  rgba(255, 255, 255, 0.15);
+}
+
+/* ----------------------------------------------------------
+   GLOBAL BASE
    ---------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
 }
 
-/* ----------------------------------------------------------
-   Base body styles — light mode default, dark mode override
-   ---------------------------------------------------------- */
 body {
-  background-color: #ffffff;
-  color: #0F172A;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
   font-family: var(--font-sans);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth);
-}
-
-.dark body {
-  background-color: #0F172A;
-  color: #f1f5f9;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s var(--ease-smooth),
+              color 0.3s var(--ease-smooth);
 }
 
 /* ----------------------------------------------------------
-   Scroll-reveal animation
-   Elements start invisible/shifted down; the .reveal-visible
-   class is added by the IntersectionObserver hook.
+   FOCUS RING — accessibility (WCAG 2.1 AA)
+   ---------------------------------------------------------- */
+*:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ----------------------------------------------------------
+   SCROLL-REVEAL ANIMATION
+   Sections start hidden; .reveal-visible is added by the
+   IntersectionObserver hook when element enters viewport.
    ---------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s var(--ease-smooth), transform 0.65s var(--ease-smooth);
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-smooth),
+              transform 0.6s var(--ease-smooth);
 }
 
 .reveal-visible {
@@ -71,39 +158,28 @@ body {
   transform: translateY(0);
 }
 
-/* Stagger delay helpers (applied via inline style or utility class) */
+/* Stagger helpers */
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
 
 /* ----------------------------------------------------------
-   Focus-visible ring — accessibility
+   REDUCED MOTION — respect user preference globally
    ---------------------------------------------------------- */
-*:focus-visible {
-  outline: 2px solid #F59E0B;
-  outline-offset: 3px;
-  border-radius: 3px;
-}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-/* ----------------------------------------------------------
-   Gradient text helper (used in Hero heading)
-   ---------------------------------------------------------- */
-.text-gradient {
-  background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ----------------------------------------------------------
-   Section separator — subtle decorative line
-   ---------------------------------------------------------- */
-.section-rule {
-  width: 60px;
-  height: 3px;
-  background: #F59E0B;
-  border-radius: 9999px;
-  margin-bottom: 2rem;
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
