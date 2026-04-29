@@ -7,6 +7,7 @@ import About from "@/components/About";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
 import Volunteer from "@/components/Volunteer";
 import Contact from "@/components/Contact";
@@ -34,7 +35,10 @@ export default function Page() {
         {/* 5. Skills — grouped competency badges */}
         <Skills />
 
-        {/* 6. Certifications — professional certificates */}
+        {/* 6. Projects — work and academic case studies */}
+        <Projects />
+
+        {/* 7. Certifications — professional certificates */}
         <Certifications />
 
         {/* 7. Volunteer — community service */}

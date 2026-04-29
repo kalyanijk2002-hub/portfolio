@@ -1,65 +1,76 @@
 /* ============================================================
    globals.css — Kalyani Krishnan Portfolio Design System
-   Tailwind v4 — configuration lives entirely in this file.
+   Bianco-inspired: dark forest green + gold palette.
+   Tailwind v4 — all configuration lives here.
    ============================================================ */
 
 @import "tailwindcss";
 
 /* ----------------------------------------------------------
-   Class-based dark mode
+   Class-based dark mode (toggled by .dark on <html>)
    ---------------------------------------------------------- */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ----------------------------------------------------------
-   DESIGN TOKENS — Tailwind @theme
-   Every value in @theme becomes both a CSS custom property
-   AND a Tailwind utility class.
+   DESIGN TOKENS — @theme
+   Every value here becomes a CSS variable AND a Tailwind class.
    ---------------------------------------------------------- */
 @theme {
-  /* ── Brand colours ─────────────────────────────────────── */
-  --color-navy:       #0F172A;
-  --color-navy-900:   #0a1120;
-  --color-navy-800:   #1E293B;
-  --color-navy-700:   #334155;
-  --color-navy-600:   #475569;
-  --color-gold:       #C9A84C;
-  --color-gold-dark:  #A8843A;
-  --color-gold-light: #E2C47A;
+  /* ── Bianco palette ─────────────────────────────────────── */
+  /* Dark forest greens — page, section, and card surfaces    */
+  --color-forest:       #0a1a0f;   /* page background          */
+  --color-forest-900:   #071309;   /* deepest — overlays       */
+  --color-forest-800:   #0d1f13;   /* alternate section bg     */
+  --color-forest-700:   #112116;   /* card surface             */
+  --color-forest-600:   #1a3020;   /* elevated card / hover    */
+  --color-forest-500:   #234028;   /* borders, dividers        */
 
-  /* ── Font stacks — wired to Next.js font variable injections ─ */
+  /* Keep `navy` aliases pointing at the green scale so existing
+     className references still compile without changes.        */
+  --color-navy:         #0a1a0f;
+  --color-navy-900:     #071309;
+  --color-navy-800:     #0d1f13;
+  --color-navy-700:     #112116;
+  --color-navy-600:     #1a3020;
+
+  /* Gold / amber accent */
+  --color-gold:         #f5a623;
+  --color-gold-dark:    #e8951a;
+  --color-gold-light:   #f7bc5c;
+
+  /* ── Font stacks ────────────────────────────────────────── */
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-sans:    var(--font-dm-sans),   "DM Sans",            ui-sans-serif, sans-serif;
   --font-mono:    var(--font-dm-mono),   "DM Mono",            ui-monospace,  monospace;
 
-  /* ── Type scale — modular (≈1.25 ratio) ────────────────── */
-  /* Override Tailwind defaults so utility classes match spec  */
-  --text-xs:   0.75rem;    /* 12px — labels, captions */
-  --text-sm:   0.875rem;   /* 14px — secondary UI, dates */
-  --text-base: 1rem;       /* 16px — body copy */
-  --text-md:   1.125rem;   /* 18px — lead paragraphs (new) */
-  --text-lg:   1.25rem;    /* 20px — card titles */
-  --text-xl:   1.5rem;     /* 24px — section subheadings */
-  --text-2xl:  2rem;       /* 32px — section headings */
-  --text-3xl:  2.5rem;     /* 40px — page titles */
-  --text-4xl:  3.5rem;     /* 56px — hero subtitle */
-  --text-5xl:  4.5rem;     /* 72px — hero name */
+  /* ── Type scale — modular ≈1.25 ratio ──────────────────── */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-md:   1.125rem;   /* 18px */
+  --text-lg:   1.25rem;    /* 20px */
+  --text-xl:   1.5rem;     /* 24px */
+  --text-2xl:  2rem;       /* 32px */
+  --text-3xl:  2.5rem;     /* 40px */
+  --text-4xl:  3.5rem;     /* 56px */
+  --text-5xl:  4.5rem;     /* 72px */
 
   /* ── Line heights ───────────────────────────────────────── */
-  --leading-tight:   1.1;    /* display/hero only */
-  --leading-snug:    1.25;   /* headings */
-  --leading-normal:  1.5;    /* body copy */
-  --leading-relaxed: 1.65;   /* long-form reading */
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
 
   /* ── Letter spacing ─────────────────────────────────────── */
-  --tracking-tight:  -0.03em;  /* large display text */
-  --tracking-normal:  0em;     /* body */
-  --tracking-wide:    0.06em;  /* UI labels, buttons */
-  --tracking-wider:   0.12em;  /* ALL-CAPS section labels */
+  --tracking-tight:  -0.03em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.06em;
+  --tracking-wider:   0.12em;
 
   /* ── Border radius ──────────────────────────────────────── */
-  --radius-sm:   0.375rem;  /* 6px */
-  --radius-md:   0.75rem;   /* 12px */
-  --radius-lg:   1.25rem;   /* 20px */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1.25rem;
   --radius-full: 9999px;
 
   /* ── Easing ─────────────────────────────────────────────── */
@@ -67,51 +78,47 @@
 }
 
 /* ----------------------------------------------------------
-   CUSTOM UTILITIES (Tailwind v4 @utility directive)
+   CUSTOM UTILITIES
    ---------------------------------------------------------- */
-
-/* Max-width content container — 1200px */
-@utility max-w-content {
-  max-width: 75rem;
-}
-
-/* Max-width narrow container — 480px */
-@utility max-w-narrow {
-  max-width: 30rem;
-}
+@utility max-w-content { max-width: 75rem;  }   /* 1200px */
+@utility max-w-narrow  { max-width: 30rem;  }   /* 480px  */
 
 /* ----------------------------------------------------------
-   SEMANTIC TOKENS — light mode defaults
-   Used with var() in CSS rules below; not Tailwind utilities.
+   SEMANTIC TOKENS — always dark (Bianco palette is dark-only)
    ---------------------------------------------------------- */
 :root {
-  --bg-base:      #ffffff;
-  --bg-surface:   #f8fafc;
-  --bg-muted:     #f1f5f9;
+  --bg-base:      #0a1a0f;
+  --bg-surface:   #0d1f13;
+  --bg-muted:     #112116;
+  --bg-card:      #112116;
 
-  --text-primary:   #0F172A;
-  --text-secondary: #475569;
-  --text-muted:     #94a3b8;
+  --text-primary:   #f0f0f0;
+  --text-secondary: #9ca3af;
+  --text-muted:     #6b7280;
 
-  --accent-gold:    #C9A84C;
-  --accent-gold-dk: #A8843A;
-
-  --border-subtle:  rgba(15, 23, 42, 0.1);
-  --border-strong:  rgba(15, 23, 42, 0.2);
-}
-
-/* Dark mode semantic overrides */
-.dark {
-  --bg-base:      #0F172A;
-  --bg-surface:   #1E293B;
-  --bg-muted:     #334155;
-
-  --text-primary:   #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted:     #64748b;
+  --accent-gold:    #f5a623;
+  --accent-gold-dk: #e8951a;
+  --accent-glow:    rgba(245, 166, 35, 0.15);
 
   --border-subtle:  rgba(255, 255, 255, 0.08);
   --border-strong:  rgba(255, 255, 255, 0.15);
+  --border-gold:    rgba(245, 166, 35, 0.2);
+}
+
+/* Dark mode — same palette (toggle retained for preference) */
+.dark {
+  --bg-base:      #0a1a0f;
+  --bg-surface:   #0d1f13;
+  --bg-muted:     #112116;
+  --bg-card:      #112116;
+
+  --text-primary:   #f0f0f0;
+  --text-secondary: #9ca3af;
+  --text-muted:     #6b7280;
+
+  --border-subtle:  rgba(255, 255, 255, 0.08);
+  --border-strong:  rgba(255, 255, 255, 0.15);
+  --border-gold:    rgba(245, 166, 35, 0.2);
 }
 
 /* ----------------------------------------------------------
@@ -122,8 +129,8 @@ html {
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  background-color: #0a1a0f;
+  color: #f0f0f0;
   font-family: var(--font-sans);
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
@@ -133,18 +140,16 @@ body {
 }
 
 /* ----------------------------------------------------------
-   FOCUS RING — accessibility (WCAG 2.1 AA)
+   FOCUS RING — WCAG 2.1 AA
    ---------------------------------------------------------- */
 *:focus-visible {
-  outline: 2px solid var(--accent-gold);
+  outline: 2px solid #f5a623;
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
 
 /* ----------------------------------------------------------
-   SCROLL-REVEAL ANIMATION
-   Sections start hidden; .reveal-visible is added by the
-   IntersectionObserver hook when element enters viewport.
+   SCROLL-REVEAL
    ---------------------------------------------------------- */
 .reveal {
   opacity: 0;
@@ -158,25 +163,21 @@ body {
   transform: translateY(0);
 }
 
-/* Stagger helpers */
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ----------------------------------------------------------
-   REDUCED MOTION — respect user preference globally
+   REDUCED MOTION
    ---------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
   .reveal {
     opacity: 1;
     transform: none;

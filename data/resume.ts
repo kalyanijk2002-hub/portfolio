@@ -1,7 +1,6 @@
 // ============================================================
 // resume.ts — Single source of truth for all CV / portfolio data.
-// Edit this file to update any content on the site without
-// touching the React components.
+// Edit this file to update content without touching components.
 // ============================================================
 
 export const personal = {
@@ -11,13 +10,11 @@ export const personal = {
     "Highly analytical finance candidate with hands-on MIS reporting experience, targeting graduate opportunities in UK investment management.",
   email: "kalyanijkrishnan@gmail.com",
   phone: "+44 7799 724970",
-  // Replace the placeholder below with your actual LinkedIn URL before deploying
   linkedin: "https://www.linkedin.com/in/your-profile",
   cvPath: "/Kalyani_Krishnan_CV.pdf",
 };
 
 export const about = {
-  // Taken directly from the CV Professional Profile section
   paragraphs: [
     "Highly analytical MSc Finance and Management candidate at University of Strathclyde, equipped with a First-Class B.Com in Commerce and Tax Procedure and practical experience in financial reporting and analysis.",
     "Nearly one year delivering high-accuracy MIS reporting, financial modelling, and stakeholder presentations as Internal MIS Intern at Muthoot Fincorp Limited. Demonstrated excellence in data interpretation, variance analysis, and process optimisation, underpinned by a strong ethical foundation through pro-bono tutoring initiatives.",
@@ -80,15 +77,15 @@ export const experience = [
 ];
 
 export const skills = {
-  "Financial & Technical Skills": [
+  "Financial & Technical": [
     "MIS Reporting",
     "Financial Reporting",
     "Data Validation",
     "Accounting Principles",
     "Taxation Fundamentals",
-    "MS Access",
     "Financial Modelling",
     "Budget Analysis",
+    "MS Access",
   ],
   "Analytical & Software Tools": [
     "Microsoft Excel (Advanced)",
@@ -114,6 +111,51 @@ export const skills = {
     "Stakeholder Engagement",
   ],
 };
+
+export const projects = [
+  {
+    title: "MIS Reporting Automation",
+    category: "Data & Reporting",
+    period: "2024 – 2025",
+    status: "Professional",
+    description:
+      "Redesigned and automated the MIS reporting workflow at Muthoot Fincorp, replacing manual data consolidation with structured Excel templates and macro-driven pipelines.",
+    highlights: [
+      "Reduced monthly report compilation time by approximately 30% through template standardisation.",
+      "Built dynamic dashboards tracking KPIs across 10+ regional branches.",
+      "Introduced data validation rules that eliminated recurring input errors in cross-departmental datasets.",
+    ],
+    tools: ["Microsoft Excel", "Macros", "MS Access", "PowerPoint"],
+  },
+  {
+    title: "Investment Portfolio Analysis",
+    category: "Financial Modelling",
+    period: "2025",
+    status: "Academic",
+    description:
+      "Constructed a diversified equity portfolio using Modern Portfolio Theory, applying mean-variance optimisation to FTSE 100 constituent data to identify the efficient frontier.",
+    highlights: [
+      "Selected and weighted 12 equities to maximise Sharpe ratio within a defined risk tolerance.",
+      "Performed scenario analysis under bull, base, and bear market conditions.",
+      "Presented findings in a professional investment memorandum format.",
+    ],
+    tools: ["Excel", "Bloomberg Data", "Financial Modelling"],
+  },
+  {
+    title: "Corporate Governance Case Study",
+    category: "Research & Analysis",
+    period: "2025",
+    status: "Academic",
+    description:
+      "Conducted an in-depth analysis of board governance structures and their impact on firm performance for a FTSE 250 company, examining ESG disclosures and shareholder value creation.",
+    highlights: [
+      "Reviewed 5 years of annual reports, proxy statements, and ESG disclosures.",
+      "Benchmarked governance metrics against industry peers and best-practice frameworks.",
+      "Produced a 4,000-word research report with actionable governance recommendations.",
+    ],
+    tools: ["Bloomberg", "Annual Reports", "ESG Frameworks", "Word"],
+  },
+];
 
 export const certifications = [
   {
@@ -175,6 +217,7 @@ export const navLinks = [
   { label: "Education", href: "#education" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
   { label: "Certifications", href: "#certifications" },
   { label: "Volunteer", href: "#volunteer" },
   { label: "Contact", href: "#contact" },
