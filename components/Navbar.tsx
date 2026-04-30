@@ -18,16 +18,20 @@ export default function Navbar({ activeTab, onTab }: NavbarProps) {
   const initials = personal.name.split(" ").map((w) => w[0]).join("");
   const allTabs = [{ label: "Home", href: "#home" }, ...navLinks];
 
-  // Measure and slide the indicator to the active tab
+  // Measure and slide the indicator — reruns on tab change AND on container resize
   useLayoutEffect(() => {
-    const activeIndex = allTabs.findIndex((t) => t.href.slice(1) === activeTab);
-    const btn = buttonRefs.current[activeIndex];
-    const container = tabsRef.current;
-    if (!btn || !container) return;
-    setIndicator({
-      left: btn.offsetLeft,
-      width: btn.offsetWidth,
-    });
+    function measure() {
+      const activeIndex = allTabs.findIndex((t) => t.href.slice(1) === activeTab);
+      const btn = buttonRefs.current[activeIndex];
+      if (!btn) return;
+      setIndicator({ left: btn.offsetLeft, width: btn.offsetWidth });
+    }
+
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    if (tabsRef.current) ro.observe(tabsRef.current);
+    return () => ro.disconnect();
   }, [activeTab]);
 
   function handleTab(tab: string) {

@@ -63,7 +63,7 @@ export const education = [
 export const experience = [
   {
     company: "Muthoot Fincorp Limited",
-    role: "Internal MIS Intern",
+    role: "Finance MIS Intern",
     period: "September 2024 – July 2025",
     location: "India",
     bullets: [
