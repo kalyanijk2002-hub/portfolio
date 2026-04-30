@@ -11,7 +11,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="reveal bg-navy-800 py-16 sm:py-24 lg:py-32"
+      className="reveal bg-navy py-16 sm:py-24 lg:py-32"
     >
       <Container>
         <div className="mb-12">
@@ -28,10 +28,10 @@ export default function Skills() {
           {Object.entries(skills).map(([group, items]) => (
             <div
               key={group}
-              className="rounded-xl border-t-2 border-gold bg-navy-700/50 p-8"
+              className="rounded-xl bg-navy-700/50 p-8"
             >
               {/* Group header — left gold border */}
-              <h3 className="mb-4 border-l-2 border-gold pl-4 font-sans text-xs font-medium uppercase tracking-wider text-slate-400">
+              <h3 className="mb-4 font-sans text-xs font-medium uppercase tracking-wider text-slate-400">
                 {group}
               </h3>
 
@@ -40,7 +40,7 @@ export default function Skills() {
                 {items.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex h-[30px] items-center whitespace-nowrap rounded-full border border-gold/30 bg-gold/10 px-4 font-mono text-xs tracking-wide text-gold transition-transform duration-150 hover:scale-105"
+                    className="inline-flex h-[30px] items-center whitespace-nowrap rounded-full bg-gold/10 px-4 font-mono text-xs tracking-wide text-gold transition-transform duration-150 hover:scale-105"
                   >
                     {skill}
                   </span>

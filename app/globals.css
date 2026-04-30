@@ -1,6 +1,6 @@
 /* ============================================================
    globals.css — Kalyani Krishnan Portfolio Design System
-   Bianco-inspired: dark forest green + gold palette.
+   Charcoal + Electric Blue palette.
    Tailwind v4 — all configuration lives here.
    ============================================================ */
 
@@ -16,27 +16,17 @@
    Every value here becomes a CSS variable AND a Tailwind class.
    ---------------------------------------------------------- */
 @theme {
-  /* ── Bianco palette ─────────────────────────────────────── */
-  /* Dark forest greens — page, section, and card surfaces    */
-  --color-forest:       #0a1a0f;   /* page background          */
-  --color-forest-900:   #071309;   /* deepest — overlays       */
-  --color-forest-800:   #0d1f13;   /* alternate section bg     */
-  --color-forest-700:   #112116;   /* card surface             */
-  --color-forest-600:   #1a3020;   /* elevated card / hover    */
-  --color-forest-500:   #234028;   /* borders, dividers        */
+  /* ── Slate + Emerald palette ────────────────────────────── */
+  --color-navy:         #0f1a1a;   /* page background          */
+  --color-navy-900:     #0b1313;   /* deepest — overlays       */
+  --color-navy-800:     #121f1f;   /* alternate section bg     */
+  --color-navy-700:     #162424;   /* card surface             */
+  --color-navy-600:     #1c2e2e;   /* elevated card / hover    */
 
-  /* Keep `navy` aliases pointing at the green scale so existing
-     className references still compile without changes.        */
-  --color-navy:         #0a1a0f;
-  --color-navy-900:     #071309;
-  --color-navy-800:     #0d1f13;
-  --color-navy-700:     #112116;
-  --color-navy-600:     #1a3020;
-
-  /* Gold / amber accent */
-  --color-gold:         #f5a623;
-  --color-gold-dark:    #e8951a;
-  --color-gold-light:   #f7bc5c;
+  /* Emerald accent */
+  --color-gold:         #10b981;
+  --color-gold-dark:    #059669;
+  --color-gold-light:   #34d399;
 
   /* ── Font stacks ────────────────────────────────────────── */
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
@@ -87,38 +77,37 @@
    SEMANTIC TOKENS — always dark (Bianco palette is dark-only)
    ---------------------------------------------------------- */
 :root {
-  --bg-base:      #0a1a0f;
-  --bg-surface:   #0d1f13;
-  --bg-muted:     #112116;
-  --bg-card:      #112116;
+  --bg-base:      #0f1a1a;
+  --bg-surface:   #121f1f;
+  --bg-muted:     #162424;
+  --bg-card:      #162424;
 
-  --text-primary:   #f0f0f0;
+  --text-primary:   #f0f2f0;
   --text-secondary: #9ca3af;
   --text-muted:     #6b7280;
 
-  --accent-gold:    #f5a623;
-  --accent-gold-dk: #e8951a;
-  --accent-glow:    rgba(245, 166, 35, 0.15);
+  --accent-gold:    #10b981;
+  --accent-gold-dk: #059669;
+  --accent-glow:    rgba(16, 185, 129, 0.15);
 
-  --border-subtle:  rgba(255, 255, 255, 0.08);
-  --border-strong:  rgba(255, 255, 255, 0.15);
-  --border-gold:    rgba(245, 166, 35, 0.2);
+  --border-subtle:  rgba(255, 255, 255, 0.07);
+  --border-strong:  rgba(255, 255, 255, 0.13);
+  --border-gold:    rgba(16, 185, 129, 0.2);
 }
 
-/* Dark mode — same palette (toggle retained for preference) */
 .dark {
-  --bg-base:      #0a1a0f;
-  --bg-surface:   #0d1f13;
-  --bg-muted:     #112116;
-  --bg-card:      #112116;
+  --bg-base:      #0f1a1a;
+  --bg-surface:   #121f1f;
+  --bg-muted:     #162424;
+  --bg-card:      #162424;
 
-  --text-primary:   #f0f0f0;
+  --text-primary:   #f0f2f0;
   --text-secondary: #9ca3af;
   --text-muted:     #6b7280;
 
-  --border-subtle:  rgba(255, 255, 255, 0.08);
-  --border-strong:  rgba(255, 255, 255, 0.15);
-  --border-gold:    rgba(245, 166, 35, 0.2);
+  --border-subtle:  rgba(255, 255, 255, 0.07);
+  --border-strong:  rgba(255, 255, 255, 0.13);
+  --border-gold:    rgba(16, 185, 129, 0.2);
 }
 
 /* ----------------------------------------------------------
@@ -126,10 +115,11 @@
    ---------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
+  background-color: #0f1a1a;
 }
 
 body {
-  background-color: #0a1a0f;
+  background-color: #0f1a1a;
   color: #f0f0f0;
   font-family: var(--font-sans);
   font-weight: 300;
@@ -143,7 +133,7 @@ body {
    FOCUS RING — WCAG 2.1 AA
    ---------------------------------------------------------- */
 *:focus-visible {
-  outline: 2px solid #f5a623;
+  outline: 2px solid #10b981;
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -171,6 +161,23 @@ body {
 /* ----------------------------------------------------------
    REDUCED MOTION
    ---------------------------------------------------------- */
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-150%) skewX(-12deg); }
+  100% { transform: translateX(150%)  skewX(-12deg); }
+}
+
+@keyframes glare {
+  0%        { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
+  10%       { opacity: 1; }
+  90%       { opacity: 1; }
+  100%      { transform: translateX(120%)  skewX(-20deg); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

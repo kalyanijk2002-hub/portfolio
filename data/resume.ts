@@ -216,9 +216,6 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Education", href: "#education" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "Volunteer", href: "#volunteer" },
+  { label: "Projects & Certifications", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];

@@ -103,7 +103,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen font-sans antialiased">
+      <body className="min-h-screen font-sans antialiased" style={{ backgroundColor: "#0f1a1a" }}>
         {children}
       </body>
     </html>

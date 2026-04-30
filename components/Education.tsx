@@ -34,23 +34,23 @@ export default function Education() {
               <span
                 aria-hidden="true"
                 className={[
-                  "absolute left-0 top-2 flex h-6 w-6 items-center justify-center rounded-full border-[3px]",
+                  "absolute left-0 top-2 flex h-6 w-6 items-center justify-center rounded-full",
                   edu.current
-                    ? "border-navy bg-gold shadow-[0_0_0_1px_#f5a623]"
-                    : "border-navy bg-navy-700 shadow-[0_0_0_1px_rgba(245,166,35,0.4)]",
+                    ? "bg-gold shadow-[0_0_0_2px_#f5a623]"
+                    : "bg-navy-700 shadow-[0_0_0_2px_rgba(245,166,35,0.4)]",
                 ].join(" ")}
               />
 
               {/* Date badge */}
               <div className="mb-3">
-                <span className="inline-flex h-[26px] items-center rounded-full border border-white/10 bg-navy-700/60 px-3 font-mono text-xs tracking-wide text-slate-400">
+                <span className="inline-flex h-[26px] items-center rounded-full bg-navy-700/60 px-3 font-mono text-xs tracking-wide text-slate-400">
                   {edu.period}
                   {edu.current && <span className="ml-2 text-emerald-400">· In Progress</span>}
                 </span>
               </div>
 
               {/* Card */}
-              <div className="rounded-xl border-t-2 border-gold bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30">
+              <div className="rounded-xl bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30">
                 <h3 className="font-sans text-lg font-medium leading-snug text-white">
                   {edu.institution}
                 </h3>

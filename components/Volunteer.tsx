@@ -11,7 +11,7 @@ export default function Volunteer() {
     <section
       id="volunteer"
       ref={sectionRef}
-      className="reveal bg-navy-800 py-16 sm:py-24 lg:py-32"
+      className="reveal bg-navy py-16 sm:py-24 lg:py-32"
     >
       <Container>
         <div className="mb-12">
@@ -25,7 +25,7 @@ export default function Volunteer() {
 
         <div className="space-y-8">
           {volunteer.map((entry, index) => (
-            <div key={index} className="rounded-xl border-t-2 border-gold bg-navy-700/50 p-12">
+            <div key={index} className="rounded-xl bg-navy-700/50 p-12">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold/10">
@@ -43,7 +43,6 @@ export default function Volunteer() {
                 </span>
               </div>
 
-              <div className="my-6 h-px bg-white/8" />
 
               <ul className="space-y-4 max-w-prose">
                 {entry.bullets.map((bullet, i) => (

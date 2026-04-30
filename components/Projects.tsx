@@ -11,7 +11,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="reveal bg-navy-800 py-16 sm:py-24 lg:py-32"
+      className="reveal bg-navy py-16 sm:py-24 lg:py-32"
     >
       <Container>
         <div className="mb-12">
@@ -27,7 +27,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <article
               key={index}
-              className="flex flex-col rounded-xl border-t-2 border-gold bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30"
+              className="flex flex-col rounded-xl bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30"
             >
               {/* Header */}
               <div className="mb-6 flex items-start justify-between gap-3">
@@ -36,7 +36,7 @@ export default function Projects() {
                     "inline-flex h-[22px] items-center rounded-full px-2.5 font-mono text-xs tracking-wide",
                     project.status === "Professional"
                       ? "bg-gold/15 text-gold"
-                      : "border border-white/10 bg-navy-700/60 text-slate-400",
+                      : "bg-navy-700/60 text-slate-400",
                   ].join(" ")}
                 >
                   {project.status}
@@ -54,7 +54,6 @@ export default function Projects() {
                 {project.category}
               </p>
 
-              <div className="my-5 h-px bg-white/8" />
 
               {/* Description */}
               <p className="font-sans text-sm font-light leading-relaxed text-slate-300">
@@ -90,7 +89,7 @@ export default function Projects() {
                 {project.tools.map((tool) => (
                   <span
                     key={tool}
-                    className="inline-flex items-center rounded-full border border-gold/30 bg-gold/10 px-3 py-1 font-mono text-xs tracking-wide text-gold"
+                    className="inline-flex items-center rounded-full bg-gold/10 px-3 py-1 font-mono text-xs tracking-wide text-gold"
                   >
                     {tool}
                   </span>

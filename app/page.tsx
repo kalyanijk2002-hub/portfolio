@@ -1,53 +1,35 @@
-// page.tsx — Root page: single-scroll layout composing all sections.
-// Each section component handles its own reveal animation internally.
+"use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
-import Volunteer from "@/components/Volunteer";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Page() {
+  const [activeTab, setActiveTab] = useState("home");
+
   return (
     <>
-      {/* Sticky navigation — rendered above all sections */}
-      <Navbar />
-
-      <main>
-        {/* 1. Hero — full-screen opening */}
-        <Hero />
-
-        {/* 2. About — professional summary + quick facts */}
-        <About />
-
-        {/* 3. Education — timeline of qualifications */}
-        <Education />
-
-        {/* 4. Experience — work history cards */}
-        <Experience />
-
-        {/* 5. Skills — grouped competency badges */}
-        <Skills />
-
-        {/* 6. Projects — work and academic case studies */}
-        <Projects />
-
-        {/* 7. Certifications — professional certificates */}
-        <Certifications />
-
-        {/* 7. Volunteer — community service */}
-        <Volunteer />
-
-        {/* 8. Contact — mailto form + direct links */}
-        <Contact />
+      <Navbar activeTab={activeTab} onTab={setActiveTab} />
+      <main className="pt-20">
+        <div
+          key={activeTab}
+          style={{ animation: "tab-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both" }}
+        >
+          {activeTab === "home"           && <Hero />}
+          {activeTab === "about"          && <About />}
+          {activeTab === "education"      && <Education />}
+          {activeTab === "experience"     && <Experience />}
+          {activeTab === "projects"       && <><Projects /><Certifications /></>}
+          {activeTab === "contact"        && <Contact />}
+        </div>
       </main>
-
       <Footer />
     </>
   );

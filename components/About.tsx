@@ -1,6 +1,6 @@
 "use client";
 
-import { about, additional, personal } from "@/data/resume";
+import { about, additional, personal, skills } from "@/data/resume";
 import { useReveal } from "./useReveal";
 import Container from "./layout/Container";
 
@@ -11,22 +11,23 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="reveal bg-navy-800 py-16 sm:py-24 lg:py-32"
+      className="reveal bg-navy py-16 sm:py-24 lg:py-32"
     >
       <Container>
-        <div className="mb-12">
-          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-gold">
-            Who I Am
-          </p>
-          <h2 className="font-display text-2xl font-light leading-snug tracking-tight text-white lg:text-3xl">
-            About Me
-          </h2>
-        </div>
+        {/* Grid: left has header + prose, right has Quick Facts — both start at same top */}
+        <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-
-          {/* Prose */}
+          {/* Left — header + prose */}
           <div>
+            <div className="mb-12">
+              <p className="mb-3 font-mono text-xs uppercase tracking-wider text-gold">
+                Who I Am
+              </p>
+              <h2 className="font-display text-2xl font-light leading-snug tracking-tight text-white lg:text-3xl">
+                About Me
+              </h2>
+            </div>
+
             <div className="space-y-5 max-w-prose">
               {about.paragraphs.map((para, i) => (
                 <p key={i} className="font-sans text-base font-light leading-relaxed text-slate-300">
@@ -34,45 +35,10 @@ export default function About() {
                 </p>
               ))}
             </div>
-
-            {/* Languages */}
-            <div className="mt-8">
-              <h3 className="mb-4 font-sans text-xs font-medium uppercase tracking-wider text-slate-500">
-                Languages
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {additional.languages.map(({ language, level }) => (
-                  <span
-                    key={language}
-                    className="inline-flex h-[30px] items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-4 font-mono text-xs tracking-wide text-gold"
-                  >
-                    {language}
-                    <span className="text-slate-500">· {level}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Interests */}
-            <div className="mt-6">
-              <h3 className="mb-4 font-sans text-xs font-medium uppercase tracking-wider text-slate-500">
-                Interests
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {additional.interests.map((interest) => (
-                  <span
-                    key={interest}
-                    className="inline-flex h-[30px] items-center rounded-full border border-white/8 bg-navy-700/60 px-4 font-mono text-xs tracking-wide text-slate-300"
-                  >
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Quick facts card */}
-          <div className="rounded-xl border border-white/8 bg-navy-700/50 p-8">
+          {/* Right — quick facts */}
+          <div className="rounded-xl bg-navy-700/50 p-8">
             <h3 className="mb-6 font-display text-lg font-light tracking-tight text-white">
               Quick Facts
             </h3>
@@ -104,6 +70,40 @@ export default function About() {
                 <span className="font-sans text-sm font-light text-slate-300">{additional.rightToWork}</span>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Skills — full width below */}
+        <div className="mt-16">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-gold">
+            Expertise
+          </p>
+          <h3 className="mb-8 font-display text-xl font-light leading-snug tracking-tight text-white">
+            Skills &amp; Tools
+          </h3>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {Object.entries(skills).map(([group, items]) => (
+              <div key={group} className="rounded-xl bg-navy-700/50 p-6">
+                {/* Group header */}
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="h-px w-6 bg-gold" aria-hidden="true" />
+                  <h4 className="font-sans text-xs font-semibold uppercase tracking-widest text-slate-400">
+                    {group}
+                  </h4>
+                </div>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-md bg-gold/10 px-3 py-1.5 font-sans text-sm font-light text-gold"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </Container>

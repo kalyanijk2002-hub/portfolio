@@ -6,7 +6,7 @@ import { useState } from "react";
 import Container from "./layout/Container";
 
 const inputBase =
-  "w-full rounded-lg border border-white/8 bg-navy-700/50 px-5 font-sans text-sm font-light text-white placeholder-slate-600 outline-none transition-all duration-200 focus:border-gold/60 focus:ring-[3px] focus:ring-gold/12";
+  "w-full rounded-lg bg-navy-700/50 px-5 font-sans text-sm font-light text-white placeholder-slate-600 outline-none transition-all duration-200 focus:ring-[3px] focus:ring-gold/20";
 
 export default function Contact() {
   const sectionRef = useReveal() as React.RefObject<HTMLElement>;
@@ -76,7 +76,7 @@ export default function Contact() {
                   ),
                 },
               ].map(({ href, label, value, icon }) => (
-                <a key={label} href={href} className="group flex items-center gap-4 rounded-lg border border-white/8 bg-navy-700/50 px-5 py-4 transition-all duration-200 hover:border-gold/30 hover:bg-gold/5">
+                <a key={label} href={href} className="group flex items-center gap-4 rounded-lg bg-navy-700/50 px-5 py-4 transition-all duration-200 hover:bg-gold/5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">{icon}</div>
                   <div>
                     <p className="font-mono text-xs tracking-wide text-slate-500">{label}</p>
@@ -85,7 +85,7 @@ export default function Contact() {
                 </a>
               ))}
 
-              <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 rounded-lg border border-white/8 bg-navy-700/50 px-5 py-4 transition-all duration-200 hover:border-gold/30 hover:bg-gold/5">
+              <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 rounded-lg bg-navy-700/50 px-5 py-4 transition-all duration-200 hover:bg-gold/5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />

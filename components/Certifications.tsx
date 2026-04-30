@@ -27,7 +27,7 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="group flex flex-col rounded-xl border-t-2 border-gold bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30"
+              className="group flex flex-col rounded-xl bg-navy-700/50 p-8 transition-shadow duration-200 hover:shadow-lg hover:shadow-black/30"
             >
               <h3 className="font-sans text-lg font-medium leading-snug text-white">
                 {cert.title}
@@ -37,7 +37,6 @@ export default function Certifications() {
                 <p className="mt-1 font-mono text-xs tracking-wide text-slate-500">{cert.date}</p>
               )}
 
-              <div className="my-5 h-px bg-white/8" />
 
               <p className="grow font-sans text-sm font-light leading-relaxed text-slate-300">
                 {cert.description}
